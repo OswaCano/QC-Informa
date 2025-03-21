@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Delete, Put, Body, Param } from '@nestjs/common';
+import { Controller, Get, Post, Delete, Put, Body, Param, ConflictException, NotFoundException, HttpCode} from '@nestjs/common';
 import { PostsService } from './posts.service';
 import {CreatePostDto} from "../dto/createPost.dto";
 import {UpdatePostDto} from "../dto/updatePost.dto";
@@ -13,22 +13,42 @@ export class PostsController {
     }
 
     @Get(':id')
-    findOne(@Param('id') id: number) {
-        return this.postsService.findOne(id);
+    async findOne(@Param('id') id: number) {
+        const post = await this.postsService.findOne(id);
+        if (!post) {
+            throw new NotFoundException('Post not found');
+        }
+        return post;
     }
 
     @Post()
-    create(@Body() body: CreatePostDto) {
-        return this.postsService.create( body );
+    async create(@Body() body: CreatePostDto) {
+        try {
+            return  await this.postsService.create( body );
+        } catch (error) {
+            if (error.code === '11000') {
+                throw new ConflictException('Post already exists');
+            }
+            throw error;
+        }
     }
 
     @Delete(':id')
-    deleteOne(@Param('id') id: number) {
-        return this.postsService.deleteOne(id);
+    @HttpCode(204)
+    async deleteOne(@Param('id') id: number) {
+        const post = await this.postsService.deleteOne(id);
+        if (!post) {
+            throw new NotFoundException('Post not found');
+        }
+        return post;
     }
 
     @Put(':id')
-    updateOne(@Param('id') id: number, @Body() body: UpdatePostDto) {
-        return this.postsService.updateOne(id, body);
+    async updateOne(@Param('id') id: number, @Body() body: UpdatePostDto) {
+        const post = await this.postsService.updateOne(id, body);
+        if (!post) {
+            throw new NotFoundException('Post not found');
+        }
+        return post;
     }
 }

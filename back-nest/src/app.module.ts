@@ -3,24 +3,31 @@ import { PostsModule } from './posts/posts.module';
 //import { MongooseModule } from '@nestjs/mongoose';
 import { UsersModule } from './users/users.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { ConfigModule } from '@nestjs/config';
+import {ConfigModule, ConfigService} from '@nestjs/config';
 
 @Module({
   imports: [
       //MongooseModule.forRoot('mongodb://localhost/postsdb'),
-      ConfigModule.forRoot(),
-      TypeOrmModule.forRoot({
-          type: 'postgres',
-          host: process.env.SUPABASE_HOST,
-          port: Number(process.env.SUPABASE_PORT) || 5432,
-          username: process.env.SUPABASE_USER,
-          password: process.env.SUPABASE_PASSWORD,
-          database: process.env.SUPABASE_DB,
-          autoLoadEntities: true, // Carga automática de entidades
-          synchronize: true, // Solo en desarrollo, NO en producción
+      ConfigModule.forRoot(), //carga las variables de entorno
+
+      TypeOrmModule.forRootAsync({
+          imports: [ConfigModule],
+          inject: [ConfigService],
+          useFactory: (configService: ConfigService) => ({
+              type: 'postgres',
+              host: configService.get<string>('SUPABASE_HOST'),
+              port: configService.get<number>('SUPABASE_PORT', 5432),
+              username: configService.get<string>('SUPABASE_USER'),
+              password: configService.get<string>('SUPABASE_PASSWORD'),
+              database: configService.get<string>('SUPABASE_DB'),
+              entities: [__dirname + '/**/*.entity{.ts,.js}'],
+              autoLoadEntities: true, // Carga automática de entidades
+              synchronize: true, // Solo en desarrollo, NO en producción
+          }),
       }),
+
       PostsModule,
-      UsersModule
+      UsersModule,
   ],
 })
 export class AppModule {}
