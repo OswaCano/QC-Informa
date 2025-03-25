@@ -1,0 +1,361 @@
+/* Authentication pages styling */
+.auth-section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 80vh;
+  padding: 2rem 7%;
+  background-color: #F2FCF5;
+}
+
+.auth-container {
+  width: 100%;
+  max-width: 500px;
+  padding: 3rem;
+  background-color: white;
+  border-radius: 15px;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+}
+
+.auth-title {
+  font-size: 2.2rem;
+  color: #253D4E;
+  margin-bottom: 1rem;
+  font-weight: 700;
+  text-align: center;
+}
+
+.auth-subtitle {
+  font-size: 1rem;
+  color: #7E7E7E;
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+.auth-form {
+  margin-bottom: 2rem;
+}
+
+.form-group {
+  margin-bottom: 1.5rem;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+  color: #253D4E;
+}
+
+.form-group input {
+  width: 100%;
+  padding: 0.8rem 1rem;
+  border: 1px solid #E5E5E5;
+  border-radius: 8px;
+  font-size: 1rem;
+  transition: border-color 0.3s ease;
+}
+
+.form-group input:focus {
+  outline: none;
+  border-color: #3BB77E;
+}
+
+.form-group input.error {
+  border-color: #ff3333;
+}
+
+.error-message {
+  color: #ff3333;
+  font-size: 0.85rem;
+  margin-top: 0.5rem;
+  display: block;
+}
+
+.form-options {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+
+.remember-me {
+  display: flex;
+  align-items: center;
+}
+
+.remember-me input {
+  margin-right: 0.5rem;
+}
+
+.forgot-password {
+  color: #3BB77E;
+  text-decoration: none;
+  font-size: 0.9rem;
+  transition: color 0.3s ease;
+}
+
+.forgot-password:hover {
+  color: #2a9d68;
+}
+
+.auth-button {
+  width: 100%;
+  padding: 0.9rem;
+  font-size: 1rem;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-weight: 500;
+  margin-bottom: 1rem;
+}
+
+.auth-button.primary {
+  background-color: #3BB77E;
+  color: white;
+}
+
+.auth-button.primary:hover {
+  background-color: #2a9d68;
+}
+
+.auth-footer {
+  text-align: center;
+  color: #7E7E7E;
+}
+
+.auth-link {
+  color: #3BB77E;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+.auth-link:hover {
+  color: #2a9d68;
+}
+
+/* Welcome section for Home page */
+.welcome-section {
+  padding: 4rem 7%;
+  background-color: #F2FCF5;
+  text-align: center;
+}
+
+.welcome-content h1 {
+  font-size: 2.8rem;
+  color: #253D4E;
+  margin-bottom: 1.5rem;
+  font-weight: 700;
+}
+
+.welcome-content p {
+  font-size: 1.1rem;
+  color: #7E7E7E;
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+/* Dashboard section */
+.dashboard-section {
+  padding: 5rem 7%;
+  background-color: #ffffff;
+}
+
+.dashboard-cards {
+  display: flex;
+  justify-content: space-between;
+  gap: 2rem;
+  margin-top: 3rem;
+}
+
+.dashboard-card {
+  width: 32%;
+  padding: 2.5rem 2rem;
+  text-align: center;
+  background-color: #F2FCF5;
+  border-radius: 15px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.dashboard-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 10px 30px rgba(59, 183, 126, 0.15);
+}
+
+.card-icon {
+  width: 80px;
+  height: 80px;
+  margin: 0 auto 1.5rem;
+  border-radius: 50%;
+  background-color: rgba(59, 183, 126, 0.15);
+  background-size: 50%;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.card-icon.reports {
+  background-image: url('https://img.icons8.com/fluency/96/document.png');
+}
+
+.card-icon.new-report {
+  background-image: url('https://img.icons8.com/fluency/96/plus.png');
+}
+
+.card-icon.profile {
+  background-image: url('https://img.icons8.com/fluency/96/user.png');
+}
+
+.dashboard-card h3 {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+  color: #253D4E;
+  font-weight: 600;
+}
+
+.dashboard-card p {
+  color: #7E7E7E;
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
+}
+
+.card-button {
+  padding: 0.7rem 1.5rem;
+  font-size: 0.9rem;
+  background-color: #3BB77E;
+  color: white;
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  font-weight: 500;
+}
+
+.card-button:hover {
+  background-color: #2a9d68;
+}
+
+/* Recent reports section */
+.recent-reports-section {
+  padding: 5rem 7%;
+  background-color: #F2FCF5;
+}
+
+.reports-list {
+  margin-top: 3rem;
+}
+
+.report-item {
+  display: flex;
+  align-items: center;
+  padding: 1.5rem;
+  background-color: white;
+  border-radius: 10px;
+  margin-bottom: 1.5rem;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+  transition: transform 0.3s ease;
+}
+
+.report-item:hover {
+  transform: translateY(-5px);
+}
+
+.report-status {
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  margin-right: 1.5rem;
+}
+
+.report-status.pending {
+  background-color: #FFA500;
+}
+
+.report-status.in-progress {
+  background-color: #3498DB;
+}
+
+.report-status.resolved {
+  background-color: #3BB77E;
+}
+
+.report-content {
+  flex: 1;
+}
+
+.report-content h3 {
+  font-size: 1.2rem;
+  color: #253D4E;
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+}
+
+.report-date {
+  font-size: 0.85rem;
+  color: #7E7E7E;
+  margin-bottom: 0.5rem;
+}
+
+.report-description {
+  color: #7E7E7E;
+  line-height: 1.5;
+}
+
+.report-actions {
+  margin-left: 1.5rem;
+}
+
+.action-button {
+  padding: 0.6rem 1.2rem;
+  font-size: 0.85rem;
+  background-color: transparent;
+  color: #3BB77E;
+  border: 1px solid #3BB77E;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-weight: 500;
+}
+
+.action-button:hover {
+  background-color: #3BB77E;
+  color: white;
+}
+
+/* Responsive styles */
+@media (max-width: 992px) {
+  .dashboard-cards {
+    flex-wrap: wrap;
+  }
+  
+  .dashboard-card {
+    width: 48%;
+    margin-bottom: 2rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .auth-container {
+    padding: 2rem;
+  }
+  
+  .dashboard-card {
+    width: 100%;
+  }
+  
+  .report-item {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .report-status {
+    margin-bottom: 1rem;
+  }
+  
+  .report-actions {
+    margin-left: 0;
+    margin-top: 1rem;
+    align-self: flex-end;
+  }
+}
