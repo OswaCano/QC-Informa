@@ -6,6 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "concurrently \"npm run start:dev back-nest\" \"npm run dev front-react\""
+    "build": "concurrently \"npm run build back-nest\" \"npm run build front-react\""
   },
   "private": true,
   "devDependencies": {
