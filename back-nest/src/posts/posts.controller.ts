@@ -1,7 +1,20 @@
-import { Controller, Get, Post, Delete, Put, Body, Param, ConflictException, NotFoundException, HttpCode} from '@nestjs/common';
+import {
+    Controller,
+    Get,
+    Post,
+    Delete,
+    Put,
+    Body,
+    Param,
+    ConflictException,
+    NotFoundException,
+    HttpCode,
+    UseGuards
+} from '@nestjs/common';
 import { PostsService } from './posts.service';
 import {CreatePostDto} from "../dto/createPost.dto";
 import {UpdatePostDto} from "../dto/updatePost.dto";
+import {JwtAuthGuard} from "../guards/jwt.guard";
 
 @Controller('posts')
 export class PostsController {
@@ -13,6 +26,7 @@ export class PostsController {
     }
 
     @Get(':id')
+    @UseGuards(JwtAuthGuard)
     async findOne(@Param('id') id: number) {
         const post = await this.postsService.findOne(id);
         if (!post) {
@@ -22,6 +36,7 @@ export class PostsController {
     }
 
     @Post()
+    @UseGuards(JwtAuthGuard)
     async create(@Body() body: CreatePostDto) {
         try {
             return  await this.postsService.create( body );
@@ -34,6 +49,7 @@ export class PostsController {
     }
 
     @Delete(':id')
+    @UseGuards(JwtAuthGuard)
     @HttpCode(204)
     async deleteOne(@Param('id') id: number) {
         const post = await this.postsService.deleteOne(id);
@@ -44,6 +60,7 @@ export class PostsController {
     }
 
     @Put(':id')
+    @UseGuards(JwtAuthGuard)
     async updateOne(@Param('id') id: number, @Body() body: UpdatePostDto) {
         const post = await this.postsService.updateOne(id, body);
         if (!post) {
