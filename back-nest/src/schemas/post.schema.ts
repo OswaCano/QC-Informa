@@ -42,7 +42,7 @@ export class Post {
     @Column("text")
     content: string;
 
-    @Column({ type: "varchar" })
+    @Column({ type: "varchar" , nullable: true})
     category: string; // "basura", "ecológico", etc.
 
     @Column({ type: "timestamp", default: () => "CURRENT_TIMESTAMP" })
