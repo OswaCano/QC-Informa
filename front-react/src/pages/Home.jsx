@@ -1,6 +1,41 @@
-import { Link } from 'react-router-dom';
+import { useState, useEffect } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import PostsService from '../services/posts.service';
+import AuthService from '../services/auth.service';
 
 function Home() {
+  const [posts, setPosts] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    // Verificar si el usuario está autenticado
+    const currentUser = AuthService.getCurrentUser();
+    if (!currentUser) {
+      navigate('/signin');
+      return;
+    }
+
+    // Cargar los posts
+    const fetchPosts = async () => {
+      try {
+        const data = await PostsService.getAllPosts();
+        setPosts(data);
+        setLoading(false);
+      } catch (error) {
+        console.error('Error al cargar los posts:', error);
+        setLoading(false);
+      }
+    };
+
+    fetchPosts();
+  }, [navigate]);
+
+  const handleLogout = () => {
+    AuthService.logout();
+    navigate('/');
+  };
+
   return (
     <div className="app-container">
       <header className="header">
@@ -16,7 +51,7 @@ function Home() {
           </ul>
         </nav>
         <div className="header-buttons">
-          <Link to="/" className="header-button outline">Logout</Link>
+          <button onClick={handleLogout} className="header-button outline">Logout</button>
         </div>
       </header>
 
@@ -58,43 +93,40 @@ function Home() {
         <section className="recent-reports-section">
           <h2 className="section-title">Reportes Recientes</h2>
           
-          <div className="reports-list">
-            <div className="report-item">
-              <div className="report-status pending"></div>
-              <div className="report-content">
-                <h3>Fuga de agua en baños del módulo A</h3>
-                <p className="report-date">Hace 2 días</p>
-                <p className="report-description">Hay una fuga de agua en los lavabos del baño de hombres en el módulo A.</p>
-              </div>
-              <div className="report-actions">
-                <button className="action-button">Ver Detalles</button>
-              </div>
+          {loading ? (
+            <p>Cargando reportes...</p>
+          ) : (
+            <div className="reports-list">
+              {posts.length > 0 ? (
+                posts.map((post) => (
+                  <div key={post.id} className="report-item">
+                    <div className={`report-status ${post.active ? 'pending' : 'resolved'}`}></div>
+                    <div className="report-content">
+                      <h3>{post.title}</h3>
+                      <p className="report-date">
+                        {new Date(post.created_at).toLocaleDateString('es-ES', {
+                          year: 'numeric',
+                          month: 'long',
+                          day: 'numeric'
+                        })}
+                      </p>
+                      <p className="report-description">{post.content}</p>
+                    </div>
+                    <div className="report-actions">
+                      <button 
+                        className="action-button"
+                        onClick={() => navigate(`/post/${post.id}`)}
+                      >
+                        Ver Detalles
+                      </button>
+                    </div>
+                  </div>
+                ))
+              ) : (
+                <p>No hay reportes disponibles.</p>
+              )}
             </div>
-            
-            <div className="report-item">
-              <div className="report-status in-progress"></div>
-              <div className="report-content">
-                <h3>Luminarias dañadas en estacionamiento</h3>
-                <p className="report-date">Hace 5 días</p>
-                <p className="report-description">Varias luminarias del estacionamiento principal no funcionan, generando inseguridad.</p>
-              </div>
-              <div className="report-actions">
-                <button className="action-button">Ver Detalles</button>
-              </div>
-            </div>
-            
-            <div className="report-item">
-              <div className="report-status resolved"></div>
-              <div className="report-content">
-                <h3>Banca rota en área verde</h3>
-                <p className="report-date">Hace 1 semana</p>
-                <p className="report-description">Una de las bancas en el área verde central está rota y representa un peligro.</p>
-              </div>
-              <div className="report-actions">
-                <button className="action-button">Ver Detalles</button>
-              </div>
-            </div>
-          </div>
+          )}
         </section>
       </main>
 

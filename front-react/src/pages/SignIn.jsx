@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import AuthService from '../services/auth.service';
 
 function SignIn() {
   const [formData, setFormData] = useState({
@@ -30,14 +31,19 @@ function SignIn() {
     return newErrors;
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     const newErrors = validateForm();
     if (Object.keys(newErrors).length === 0) {
-      // Here you would typically make an API call to authenticate the user
-      console.log('Form submitted:', formData);
-      // For now, we'll just redirect to the home page
-      navigate('/home');
+      try {
+        await AuthService.login(formData.email, formData.password);
+        navigate('/home');
+      } catch (error) {
+        setErrors({
+          ...newErrors,
+          general: 'Error de autenticación. Por favor, verifica tus credenciales.'
+        });
+      }
     } else {
       setErrors(newErrors);
     }

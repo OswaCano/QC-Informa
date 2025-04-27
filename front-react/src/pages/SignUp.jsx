@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import AuthService from '../services/auth.service';
 
 function SignUp() {
   const [formData, setFormData] = useState({
@@ -42,14 +43,28 @@ function SignUp() {
     return newErrors;
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     const newErrors = validateForm();
     if (Object.keys(newErrors).length === 0) {
-      // Here you would typically make an API call to register the user
-      console.log('Form submitted:', formData);
-      // For now, we'll just redirect to the home page
-      navigate('/home');
+      try {
+        const userData = {
+          username: formData.name,
+          email: formData.email,
+          password: formData.password,
+          bio: '',
+          image: '',
+          role: 'user'
+        };
+        
+        await AuthService.register(userData);
+        navigate('/signin');
+      } catch (error) {
+        setErrors({
+          ...newErrors,
+          general: 'Error al registrar. Por favor, inténtalo de nuevo.'
+        });
+      }
     } else {
       setErrors(newErrors);
     }
