@@ -1,0 +1,15 @@
+[
+    { "texto": "Hay basura en el salón", "categoria": "basura" },
+    { "texto": "Los focos están fundidos", "categoria": "electrico" },
+    { "texto": "El árbol fue talado sin razón", "categoria": "ecologico" },
+    { "texto": "El techo está roto", "categoria": "instalaciones" },
+    { "texto": "La banca esta despintada", "categoria": "instalaciones" },
+    { "texto": "Los enchufes no sirven", "categoria": "electrico" },
+    { "texto": "Los botes de basura estan llenos", "categoria": "basura" },
+    { "texto": "Los jardines estan secos", "categoria": "ecologico" },
+    { "texto": "La pantalla esta desconectada", "categoria": "electrico" },
+    { "texto": "La computadora no tiene internet", "categoria": "electrico" },
+    { "texto": "Los dispensadores de agua estan vacios", "categoria": "instalaciones" },
+    { "texto": "El microondas no funciona", "categoria": "electrico" }
+
+  ]
