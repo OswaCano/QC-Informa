@@ -39,6 +39,7 @@ import { Repository } from 'typeorm';
 import { Post } from '../schemas/post.schema';
 import { CreatePostDto } from "../dto/createPost.dto";
 import { UpdatePostDto } from "../dto/updatePost.dto";
+import axios from "axios";
 
 @Injectable()
 export class PostsService {
@@ -52,6 +53,7 @@ export class PostsService {
 
     async create(post: CreatePostDto) {
         const newPost = this.postRepository.create(post);
+        newPost.category = await this.classifyPost(post.content); //Obtener la categoría del post
         return await this.postRepository.save(newPost);
     }
 
@@ -67,4 +69,23 @@ export class PostsService {
         await this.postRepository.update(id, post);
         return await this.findOne(id);
     }
+
+    async findByTitle(title: string) {
+        return await this.postRepository.findOne({ where: { title } });
+    }
+
+    /*async findByAuthor(user: string) {
+        return await this.postRepository.find({ where: { user } });
+    }
+    */
+
+    async findByCategory(category: string) {
+        return await this.postRepository.find({ where: { category } });
+    }
+
+    async classifyPost(text: string): Promise<string> {
+        const res = await axios.post('http://localhost:8000/clasificar', { text });
+        return res.data.category;
+    }
+
 }
