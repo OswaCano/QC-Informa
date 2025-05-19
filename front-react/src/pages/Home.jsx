@@ -9,10 +9,10 @@ function Home() {
         </div>
         <nav className="nav-menu">
           <ul>
-            <li><a href="#home" className="active">Home</a></li>
-            <li><a href="#about">About</a></li>
-            <li><a href="#services">Services</a></li>
-            <li><a href="#contact">Contact</a></li>
+            <li><Link to="/home" className="active">Home</Link></li>
+            <li><Link to="/my-reports">Mis Reportes</Link></li>
+            <li><Link to="/new-report">Crear Reporte</Link></li>
+            <li><Link to="/profile">Mi Perfil</Link></li>
           </ul>
         </nav>
         <div className="header-buttons">
@@ -36,21 +36,21 @@ function Home() {
               <div className="card-icon reports"></div>
               <h3>Mis Reportes</h3>
               <p>Visualiza y gestiona tus reportes enviados</p>
-              <button className="card-button">Ver Reportes</button>
+              <Link to="/my-reports"><button className="card-button">Ver Reportes</button></Link>
             </div>
             
             <div className="dashboard-card">
               <div className="card-icon new-report"></div>
               <h3>Nuevo Reporte</h3>
               <p>Crea un nuevo reporte de problema en el campus</p>
-              <button className="card-button">Crear Reporte</button>
+              <Link to="/new-report"><button className="card-button">Crear Reporte</button></Link>
             </div>
             
             <div className="dashboard-card">
               <div className="card-icon profile"></div>
               <h3>Mi Perfil</h3>
               <p>Actualiza tu información personal y preferencias</p>
-              <button className="card-button">Editar Perfil</button>
+              <Link to="/profile"><button className="card-button">Editar Perfil</button></Link>
             </div>
           </div>
         </section>
