@@ -13,6 +13,8 @@
   min-height: 100vh;
   font-family: 'Poppins', sans-serif;
   color: #333;
+  padding: 15px; /* Agrega un margen interno de 15px */
+  box-sizing: border-box; /* Asegura que el padding no afecte el tamaño total */
 }
 
 /* Header styles */

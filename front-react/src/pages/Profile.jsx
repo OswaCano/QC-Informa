@@ -1,15 +1,16 @@
 import { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
-function SignUp() {
+function Profile() {
   const [formData, setFormData] = useState({
-    name: '',
-    email: '',
+    name: 'Juan Pérez',
+    email: 'juan.perez@example.com',
+    phone: '123-456-7890',
     password: '',
     confirmPassword: ''
   });
+
   const [errors, setErrors] = useState({});
-  const navigate = useNavigate();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -22,21 +23,14 @@ function SignUp() {
   const validateForm = () => {
     const newErrors = {};
     if (!formData.name) {
-      newErrors.name = 'Un nombre completo es requerido';
+      newErrors.name = 'El nombre es obligatorio';
     }
     if (!formData.email) {
-      newErrors.email = 'Email es requerido';
+      newErrors.email = 'El correo electrónico es obligatorio';
     } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
-      newErrors.email = 'Email es inválido';
+      newErrors.email = 'El correo electrónico no es válido';
     }
-    if (!formData.password) {
-      newErrors.password = 'La contraseña es requerida';
-    } else if (formData.password.length < 6) {
-      newErrors.password = 'La contraseña debe tener al menos 6 caracteres';
-    }
-    if (!formData.confirmPassword) {
-      newErrors.confirmPassword = 'Por favor confirma tu contraseña';
-    } else if (formData.password !== formData.confirmPassword) {
+    if (formData.password && formData.password !== formData.confirmPassword) {
       newErrors.confirmPassword = 'Las contraseñas no coinciden';
     }
     return newErrors;
@@ -46,10 +40,8 @@ function SignUp() {
     e.preventDefault();
     const newErrors = validateForm();
     if (Object.keys(newErrors).length === 0) {
-      // Here you would typically make an API call to register the user
-      console.log('Form submitted:', formData);
-      // For now, we'll just redirect to the home page
-      navigate('/home');
+      console.log('Perfil actualizado:', formData);
+      alert('Perfil actualizado con éxito');
     } else {
       setErrors(newErrors);
     }
@@ -59,79 +51,86 @@ function SignUp() {
     <div className="app-container">
       <header className="header">
         <div className="logo">
-          <Link to="/" className="logo-text">QC-Informa</Link>
+          <Link to="/home" className="logo-text">QC-Informa</Link>
         </div>
       </header>
 
       <main>
-        <section className="auth-section">
-          <div className="auth-container">
-            <h2 className="auth-title">Registrate</h2>
-            <p className="auth-subtitle">Crea una cuenta para iniciar.</p>
+        <section className="profile-section">
+          <div className="profile-container">
+            <h2 className="section-title">Mi Perfil</h2>
+            <p className="profile-subtitle">Actualiza tu información personal y preferencias.</p>
             
-            <form className="auth-form" onSubmit={handleSubmit}>
+            <form className="profile-form" onSubmit={handleSubmit}>
               <div className="form-group">
-                <label htmlFor="name">Nombre completo.</label>
+                <label htmlFor="name">Nombre</label>
                 <input
                   type="text"
                   id="name"
                   name="name"
-                  placeholder="Ingresa tu nombre completo"
+                  placeholder="Ingresa tu nombre"
                   value={formData.name}
                   onChange={handleChange}
                   className={errors.name ? 'error' : ''}
                 />
                 {errors.name && <span className="error-message">{errors.name}</span>}
               </div>
-              
+
               <div className="form-group">
-                <label htmlFor="email">Email</label>
+                <label htmlFor="email">Correo Electrónico</label>
                 <input
                   type="email"
                   id="email"
                   name="email"
-                  placeholder="Ingresa tu email"
+                  placeholder="Ingresa tu correo electrónico"
                   value={formData.email}
                   onChange={handleChange}
                   className={errors.email ? 'error' : ''}
                 />
                 {errors.email && <span className="error-message">{errors.email}</span>}
               </div>
-              
+
               <div className="form-group">
-                <label htmlFor="password">Contraseña</label>
+                <label htmlFor="phone">Teléfono</label>
+                <input
+                  type="text"
+                  id="phone"
+                  name="phone"
+                  placeholder="Ingresa tu número de teléfono"
+                  value={formData.phone}
+                  onChange={handleChange}
+                />
+              </div>
+
+              <div className="form-group">
+                <label htmlFor="password">Nueva Contraseña</label>
                 <input
                   type="password"
                   id="password"
                   name="password"
-                  placeholder="Crea una contraseña"
+                  placeholder="Ingresa una nueva contraseña"
                   value={formData.password}
                   onChange={handleChange}
                   className={errors.password ? 'error' : ''}
                 />
-                {errors.password && <span className="error-message">{errors.password}</span>}
               </div>
-              
+
               <div className="form-group">
-                <label htmlFor="confirmPassword">Confirma tu contraseña</label>
+                <label htmlFor="confirmPassword">Confirmar Contraseña</label>
                 <input
                   type="password"
                   id="confirmPassword"
                   name="confirmPassword"
-                  placeholder="Confirma tu contraseña"
+                  placeholder="Confirma tu nueva contraseña"
                   value={formData.confirmPassword}
                   onChange={handleChange}
                   className={errors.confirmPassword ? 'error' : ''}
                 />
                 {errors.confirmPassword && <span className="error-message">{errors.confirmPassword}</span>}
               </div>
-              
-              <button type="submit" className="auth-button primary">Crear Cuenta</button>
+
+              <button type="submit" className="auth-button primary">Actualizar Perfil</button>
             </form>
-            
-            <div className="auth-footer">
-              <p>Ya tienes una cuenta? <Link to="/signin" className="auth-link">Inicia sesión</Link></p>
-            </div>
           </div>
         </section>
       </main>
@@ -144,11 +143,11 @@ function SignUp() {
           </div>
         </div>
         <div className="footer-bottom">
-          <p>&copy; {new Date().getFullYear()} QC-Informa. All rights reserved.</p>
+          <p>&copy; {new Date().getFullYear()} QC-Informa. Todos los derechos reservados.</p>
         </div>
       </footer>
     </div>
   );
 }
 
-export default SignUp;
+export default Profile;

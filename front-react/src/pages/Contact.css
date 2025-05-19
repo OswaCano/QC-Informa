@@ -1,0 +1,23 @@
+.contact-section {
+  padding: 2rem;
+  background-color: #f2fcf5;
+}
+
+.section-title {
+  font-size: 2rem;
+  color: #253d4e;
+  margin-bottom: 1rem;
+  font-weight: 700;
+}
+
+.section-subtitle {
+  font-size: 1rem;
+  color: #7e7e7e;
+  margin-bottom: 2rem;
+}
+
+.contact-info {
+  font-size: 1rem;
+  color: #333;
+  line-height: 1.6;
+}

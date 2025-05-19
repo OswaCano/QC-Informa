@@ -9,15 +9,15 @@ function Landing() {
         </div>
         <nav className="nav-menu">
           <ul>
-            <li><a href="#home" className="active">Home</a></li>
-            <li><a href="#about">About</a></li>
-            <li><a href="#services">Services</a></li>
-            <li><a href="#contact">Contact</a></li>
+            <li><Link to="/home" className="active">Inicio</Link></li>
+            <li><Link to="/about">Sobre Nosotros</Link></li>
+            <li><Link to="/services">Servicios</Link></li>
+            <li><Link to="/contact">Contacto</Link></li>
           </ul>
         </nav>
         <div className="header-buttons">
-          <Link to="/signin" className="header-button outline">Sign In</Link>
-          <Link to="/signup" className="header-button">Sign Up</Link>
+          <Link to="/signin" className="header-button outline">Inicia Sesión</Link>
+          <Link to="/signup" className="header-button">Regístrate</Link>
         </div>
       </header>
 
@@ -29,7 +29,7 @@ function Landing() {
               en condiciones óptimas</p>
             <div className="hero-buttons">
               <Link to="/signup" className="cta-button primary">Comenzar</Link>
-              <button className="cta-button secondary">Leer más</button>
+              <Link to="/about" className="cta-button secondary">Leer más</Link>
             </div>
           </div>
           <div className="hero-image">
@@ -96,10 +96,9 @@ function Landing() {
           <div className="footer-links">
             <h4>Enlaces rápidos</h4>
             <ul>
-              <li><a href="#home">Inicio</a></li>
-              <li><a href="#about">Acerca de</a></li>
-              <li><a href="#services">Servicios</a></li>
-              <li><a href="#contact">Contacto</a></li>
+              <li><Link to="/about">Sobre Nosotros</Link></li>
+              <li><Link to="/services">Servicios</Link></li>
+              <li><Link to="/contact">Contacto</Link></li>
             </ul>
           </div>
           <div className="footer-contact">
@@ -110,7 +109,7 @@ function Landing() {
           </div>
         </div>
         <div className="footer-bottom">
-          <p>&copy; {new Date().getFullYear()} QC-Informa. All rights reserved.</p>
+          <p>&copy; {new Date().getFullYear()} QC-Informa. Todos los derechos reservados.</p>
         </div>
       </footer>
     </div>

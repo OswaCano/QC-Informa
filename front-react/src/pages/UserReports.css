@@ -1,0 +1,92 @@
+.reports-section {
+  padding: 2rem;
+  background-color: #f2fcf5;
+}
+
+.section-title {
+  font-size: 2rem;
+  color: #253d4e;
+  margin-bottom: 1rem;
+  font-weight: 700;
+}
+
+.section-subtitle {
+  font-size: 1rem;
+  color: #7e7e7e;
+  margin-bottom: 2rem;
+}
+
+.reports-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.report-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  background-color: #ffffff;
+  padding: 1.5rem;
+  border-radius: 15px;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+}
+
+.report-status {
+  width: 10px;
+  height: 100%;
+  border-radius: 5px;
+}
+
+.report-status.pendiente {
+  background-color: #fbbd08;
+}
+
+.report-status.en-progreso {
+  background-color: #3bb77e;
+}
+
+.report-status.resuelto {
+  background-color: #21ba45;
+}
+
+.report-content {
+  flex: 1;
+}
+
+.report-content h3 {
+  font-size: 1.2rem;
+  color: #253d4e;
+  margin-bottom: 0.5rem;
+}
+
+.report-content .report-date {
+  font-size: 0.9rem;
+  color: #7e7e7e;
+  margin-bottom: 1rem;
+}
+
+.report-content .report-description {
+  font-size: 1rem;
+  color: #333;
+}
+
+.report-actions {
+  display: flex;
+  align-items: center;
+}
+
+.action-button {
+  background-color: #3bb77e;
+  color: white;
+  padding: 0.5rem 1rem;
+  font-size: 0.9rem;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.action-button:hover {
+  background-color: #2a9d68;
+}

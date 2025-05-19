@@ -20,12 +20,12 @@ function SignIn() {
   const validateForm = () => {
     const newErrors = {};
     if (!formData.email) {
-      newErrors.email = 'Email is required';
+      newErrors.email = 'El correo electrónico es obligatorio';
     } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
-      newErrors.email = 'Email is invalid';
+      newErrors.email = 'El correo electrónico no es válido';
     }
     if (!formData.password) {
-      newErrors.password = 'Password is required';
+      newErrors.password = 'La contraseña es obligatoria';
     }
     return newErrors;
   };
@@ -34,9 +34,9 @@ function SignIn() {
     e.preventDefault();
     const newErrors = validateForm();
     if (Object.keys(newErrors).length === 0) {
-      // Here you would typically make an API call to authenticate the user
-      console.log('Form submitted:', formData);
-      // For now, we'll just redirect to the home page
+      // Aquí típicamente harías una llamada a la API para autenticar al usuario
+      console.log('Formulario enviado:', formData);
+      // Por ahora, solo redirigiremos a la página de inicio
       navigate('/home');
     } else {
       setErrors(newErrors);
@@ -54,17 +54,17 @@ function SignIn() {
       <main>
         <section className="auth-section">
           <div className="auth-container">
-            <h2 className="auth-title">Sign In</h2>
-            <p className="auth-subtitle">Welcome back! Please enter your details.</p>
+            <h2 className="auth-title">Iniciar Sesión</h2>
+            <p className="auth-subtitle">¡Bienvenido de nuevo! Por favor ingresa tus datos.</p>
             
             <form className="auth-form" onSubmit={handleSubmit}>
               <div className="form-group">
-                <label htmlFor="email">Email</label>
+                <label htmlFor="email">Correo Electrónico</label>
                 <input
                   type="email"
                   id="email"
                   name="email"
-                  placeholder="Enter your email"
+                  placeholder="Ingresa tu correo electrónico"
                   value={formData.email}
                   onChange={handleChange}
                   className={errors.email ? 'error' : ''}
@@ -73,12 +73,12 @@ function SignIn() {
               </div>
               
               <div className="form-group">
-                <label htmlFor="password">Password</label>
+                <label htmlFor="password">Contraseña</label>
                 <input
                   type="password"
                   id="password"
                   name="password"
-                  placeholder="Enter your password"
+                  placeholder="Ingresa tu contraseña"
                   value={formData.password}
                   onChange={handleChange}
                   className={errors.password ? 'error' : ''}
@@ -89,16 +89,16 @@ function SignIn() {
               <div className="form-options">
                 <div className="remember-me">
                   <input type="checkbox" id="remember" />
-                  <label htmlFor="remember">Remember me</label>
+                  <label htmlFor="remember">Recuérdame</label>
                 </div>
-                <a href="#" className="forgot-password">Forgot password?</a>
+                <a href="#" className="forgot-password">¿Olvidaste tu contraseña?</a>
               </div>
               
-              <button type="submit" className="auth-button primary">Sign In</button>
+              <button type="submit" className="auth-button primary">Iniciar Sesión</button>
             </form>
             
             <div className="auth-footer">
-              <p>Don't have an account? <Link to="/signup" className="auth-link">Sign Up</Link></p>
+              <p>¿No tienes una cuenta? <Link to="/signup" className="auth-link">Regístrate</Link></p>
             </div>
           </div>
         </section>
@@ -112,7 +112,7 @@ function SignIn() {
           </div>
         </div>
         <div className="footer-bottom">
-          <p>&copy; {new Date().getFullYear()} QC-Informa. All rights reserved.</p>
+          <p>&copy; {new Date().getFullYear()} QC-Informa. Todos los derechos reservados.</p>
         </div>
       </footer>
     </div>

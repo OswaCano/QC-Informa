@@ -1,0 +1,54 @@
+.comments-section {
+  padding: 2rem;
+  background-color: #f2fcf5;
+}
+
+.section-title {
+  font-size: 2rem;
+  color: #253d4e;
+  margin-bottom: 1rem;
+  font-weight: 700;
+}
+
+.section-subtitle {
+  font-size: 1rem;
+  color: #7e7e7e;
+  margin-bottom: 2rem;
+}
+
+.comments-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.comment-item {
+  background-color: #ffffff;
+  padding: 1.5rem;
+  border-radius: 15px;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+}
+
+.comment-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.comment-header h3 {
+  font-size: 1.2rem;
+  color: #253d4e;
+  margin: 0;
+}
+
+.comment-date {
+  font-size: 0.9rem;
+  color: #7e7e7e;
+}
+
+.comment-text {
+  font-size: 1rem;
+  color: #333;
+  line-height: 1.6;
+}

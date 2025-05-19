@@ -9,13 +9,20 @@ function Home() {
         </div>
         <nav className="nav-menu">
           <ul>
-            <li><a href="#home" className="active">Home</a></li>
-            <li><a href="#about">About</a></li>
-            <li><a href="#services">Services</a></li>
-            <li><a href="#contact">Contact</a></li>
+            <li><Link to="/home" className="active">Inicio</Link></li>
+            <li><Link to="/about">Sobre Nosotros</Link></li>
+            <li><Link to="/services">Servicios</Link></li>
+            <li><Link to="/contact">Contacto</Link></li>
           </ul>
         </nav>
         <div className="header-buttons">
+          <Link to="/profile" className="header-button profile-icon">
+            <img 
+              src="https://img.icons8.com/ios-filled/50/3BB77E/user.png" 
+              alt="Perfil" 
+              style={{ width: '24px', height: '24px' }} 
+            />
+          </Link>
           <Link to="/" className="header-button outline">Logout</Link>
         </div>
       </header>
@@ -36,63 +43,36 @@ function Home() {
               <div className="card-icon reports"></div>
               <h3>Mis Reportes</h3>
               <p>Visualiza y gestiona tus reportes enviados</p>
-              <button className="card-button">Ver Reportes</button>
+              <Link to="/reports">
+                <button className="card-button">Ver Reportes</button>
+              </Link>
             </div>
             
             <div className="dashboard-card">
               <div className="card-icon new-report"></div>
               <h3>Nuevo Reporte</h3>
               <p>Crea un nuevo reporte de problema en el campus</p>
-              <button className="card-button">Crear Reporte</button>
+              <Link to="/creation">
+                <button className="card-button">Crear Reporte</button>
+              </Link>
             </div>
             
             <div className="dashboard-card">
               <div className="card-icon profile"></div>
               <h3>Mi Perfil</h3>
               <p>Actualiza tu información personal y preferencias</p>
-              <button className="card-button">Editar Perfil</button>
+              <Link to="/profile">
+                <button className="card-button">Editar Perfil</button>
+              </Link>
             </div>
-          </div>
-        </section>
 
-        <section className="recent-reports-section">
-          <h2 className="section-title">Reportes Recientes</h2>
-          
-          <div className="reports-list">
-            <div className="report-item">
-              <div className="report-status pending"></div>
-              <div className="report-content">
-                <h3>Fuga de agua en baños del módulo A</h3>
-                <p className="report-date">Hace 2 días</p>
-                <p className="report-description">Hay una fuga de agua en los lavabos del baño de hombres en el módulo A.</p>
-              </div>
-              <div className="report-actions">
-                <button className="action-button">Ver Detalles</button>
-              </div>
-            </div>
-            
-            <div className="report-item">
-              <div className="report-status in-progress"></div>
-              <div className="report-content">
-                <h3>Luminarias dañadas en estacionamiento</h3>
-                <p className="report-date">Hace 5 días</p>
-                <p className="report-description">Varias luminarias del estacionamiento principal no funcionan, generando inseguridad.</p>
-              </div>
-              <div className="report-actions">
-                <button className="action-button">Ver Detalles</button>
-              </div>
-            </div>
-            
-            <div className="report-item">
-              <div className="report-status resolved"></div>
-              <div className="report-content">
-                <h3>Banca rota en área verde</h3>
-                <p className="report-date">Hace 1 semana</p>
-                <p className="report-description">Una de las bancas en el área verde central está rota y representa un peligro.</p>
-              </div>
-              <div className="report-actions">
-                <button className="action-button">Ver Detalles</button>
-              </div>
+            <div className="dashboard-card">
+              <div className="card-icon comments"></div>
+              <h3>Comentarios</h3>
+              <p>Lee lo que otros usuarios tienen que decir sobre el campus</p>
+              <Link to="/comments">
+                <button className="card-button">Ver Comentarios</button>
+              </Link>
             </div>
           </div>
         </section>
@@ -112,10 +92,10 @@ function Home() {
           <div className="footer-links">
             <h4>Enlaces rápidos</h4>
             <ul>
-              <li><a href="#home">Inicio</a></li>
-              <li><a href="#about">Acerca de</a></li>
-              <li><a href="#services">Servicios</a></li>
-              <li><a href="#contact">Contacto</a></li>
+              <li><Link to="/home">Inicio</Link></li>
+              <li><Link to="/about">Sobre Nosotros</Link></li>
+              <li><Link to="/services">Servicios</Link></li>
+              <li><Link to="/contact">Contacto</Link></li>
             </ul>
           </div>
           <div className="footer-contact">
@@ -126,7 +106,7 @@ function Home() {
           </div>
         </div>
         <div className="footer-bottom">
-          <p>&copy; {new Date().getFullYear()} QC-Informa. All rights reserved.</p>
+          <p>&copy; {new Date().getFullYear()} QC-Informa. Todos los derechos reservados.</p>
         </div>
       </footer>
     </div>
